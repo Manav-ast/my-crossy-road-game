@@ -25,9 +25,37 @@ const camera = Camera();
 player.add(camera);
 
 const scoreDOM = document.getElementById("score");
+const highScoreDOM = document.getElementById("high-score");
 const resultDOM = document.getElementById("result-container");
+const finalHighScoreDOM = document.getElementById("final-high-score");
+
+function getHighScore() {
+  return parseInt(localStorage.getItem("highScore") || "0", 10);
+}
+
+function setHighScore(score) {
+  localStorage.setItem("highScore", score.toString());
+}
+
+function updateHighScoreDisplay() {
+  if (highScoreDOM) highScoreDOM.innerText = `High Score: ${getHighScore()}`;
+}
+
+function updateFinalHighScoreDisplay() {
+  if (finalHighScoreDOM) finalHighScoreDOM.innerText = getHighScore();
+}
+
+function checkAndUpdateHighScore(currentScore) {
+  const highScore = getHighScore();
+  if (currentScore > highScore) {
+    setHighScore(currentScore);
+    updateHighScoreDisplay();
+    updateFinalHighScoreDisplay();
+  }
+}
 
 initializeGame();
+updateHighScoreDisplay();
 
 document
   .querySelector("#retry")
@@ -54,6 +82,7 @@ function initializeGame() {
   // Initialize UI
   if (scoreDOM) scoreDOM.innerText = "0";
   if (resultDOM) resultDOM.style.visibility = "hidden";
+  updateHighScoreDisplay();
 }
 
 const renderer = Renderer();

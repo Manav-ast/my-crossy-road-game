@@ -38,9 +38,17 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
-
   font-size: 2em;
   color: white;
+}
+
+#high-score {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  font-size: 1.2em;
+  color: #ffd700;
+  text-shadow: 1px 1px 2px #333;
 }
 
 #result-container {
@@ -67,5 +75,11 @@ body {
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
+  }
+
+  #final-high-score {
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.2em;
   }
 }

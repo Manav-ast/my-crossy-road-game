@@ -95,4 +95,18 @@ export function stepCompleted() {
 
     const scoreDOM = document.getElementById("score");
     if (scoreDOM) scoreDOM.innerText = position.currentRow.toString();
+
+    // --- High Score Real-Time Update ---
+    const highScoreDOM = document.getElementById("high-score");
+    function getHighScore() {
+        return parseInt(localStorage.getItem("highScore") || "0", 10);
+    }
+    function setHighScore(score) {
+        localStorage.setItem("highScore", score.toString());
+    }
+    if (position.currentRow > getHighScore()) {
+        setHighScore(position.currentRow);
+        if (highScoreDOM) highScoreDOM.innerText = `High Score: ${position.currentRow}`;
+    }
+    // --- End High Score Real-Time Update ---
 }
